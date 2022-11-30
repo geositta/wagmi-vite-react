@@ -4,6 +4,8 @@ import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import { publicProvider } from 'wagmi/providers/public'
+import { IFrameEthereumConnector } from '@ledgerhq/ledger-live-wagmi-connector';
+
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -38,6 +40,7 @@ export const client = createClient({
         shimDisconnect: true,
       },
     }),
+    new IFrameEthereumConnector({ chains, options: {} }),
   ],
   provider,
   webSocketProvider,
